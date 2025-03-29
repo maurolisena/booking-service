@@ -1,0 +1,13 @@
+spring:
+    application:
+        name: booking-service
+    cloud:
+        config:
+            uri: http://localhost:8888
+            profile: dev
+    profiles:
+        active: dev
+
+eureka:
+    instance:
+        instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
