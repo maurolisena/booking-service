@@ -1,4 +1,4 @@
-package com.mlisena.booking_service.configuration;
+package com.mlisena.booking.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
