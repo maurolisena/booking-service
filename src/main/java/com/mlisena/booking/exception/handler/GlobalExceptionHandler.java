@@ -1,6 +1,7 @@
 package com.mlisena.booking.exception.handler;
 
 import com.mlisena.booking.exception.common.ErrorResponse;
+import com.mlisena.booking.exception.common.IlegalArgumentException;
 import com.mlisena.booking.exception.common.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
+    @ExceptionHandler(IlegalArgumentException.class)
     public ResponseEntity<ErrorResponse> handleIllegalArgument(IllegalArgumentException ex, WebRequest request) {
         String path = ((ServletWebRequest) request).getRequest().getRequestURI();
         ErrorResponse errorResponse = ErrorResponse.create(ex, HttpStatus.BAD_REQUEST, path);
