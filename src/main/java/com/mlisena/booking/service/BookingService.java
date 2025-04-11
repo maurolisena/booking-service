@@ -1,26 +1,27 @@
 package com.mlisena.booking.service;
 
 import com.mlisena.booking.client.Product;
-import com.mlisena.booking.client.ProductClient;
 import com.mlisena.booking.dto.mapper.BookingMapper;
 import com.mlisena.booking.dto.request.BookingRequest;
 import com.mlisena.booking.dto.response.BookingResponse;
 import com.mlisena.booking.entity.Booking;
+import com.mlisena.booking.exception.booking.BookingNotFoundException;
 import com.mlisena.booking.repository.BookingRepository;
+import com.mlisena.booking.service.external.ProductService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BookingService {
 
     private final BookingRepository bookingRepository;
-    private final ProductClient productClient;
+    private final ProductService productService;
 
     public BookingService(
-        BookingRepository bookingRepository,
-        ProductClient productClient
+            BookingRepository bookingRepository,
+            ProductService productService
     ) {
         this.bookingRepository = bookingRepository;
-        this.productClient = productClient;
+        this.productService = productService;
     }
 
     public void createBooking(BookingRequest bookingRequest) {
@@ -45,9 +46,10 @@ public class BookingService {
 
         Booking booking = bookingRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Booking not found with id: " + id));
+                .orElseThrow(() -> new BookingNotFoundException("Booking not found with id: " + id));
 
-        Product product = productClient.getProductById(booking.getProductId());
+        Product product = productService.getProductById(booking.getProductId());
+        productService.validateStock(product, booking.getQuantity());
 
         return BookingMapper.toResponse(booking, product);
     }
