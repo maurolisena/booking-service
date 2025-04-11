@@ -1,4 +1,4 @@
-package com.mlisena.booking.configuration;
+package com.mlisena.booking.configuration.feign;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
