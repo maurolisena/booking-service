@@ -8,23 +8,19 @@ import com.mlisena.booking.entity.Booking;
 import com.mlisena.booking.exception.booking.BookingNotFoundException;
 import com.mlisena.booking.repository.BookingRepository;
 import com.mlisena.booking.service.external.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class BookingService {
 
     private final BookingRepository bookingRepository;
     private final ProductService productService;
 
-    public BookingService(
-            BookingRepository bookingRepository,
-            ProductService productService
-    ) {
-        this.bookingRepository = bookingRepository;
-        this.productService = productService;
-    }
-
     public void createBooking(BookingRequest bookingRequest) {
+        Product product = productService.getProductById(bookingRequest.productId());
+        productService.validateStock(product, bookingRequest.quantity());
         Booking booking = BookingMapper.toEntity(bookingRequest);
         bookingRepository.save(booking);
     }
@@ -49,8 +45,6 @@ public class BookingService {
                 .orElseThrow(() -> new BookingNotFoundException("Booking not found with id: " + id));
 
         Product product = productService.getProductById(booking.getProductId());
-        productService.validateStock(product, booking.getQuantity());
-
         return BookingMapper.toResponse(booking, product);
     }
 }

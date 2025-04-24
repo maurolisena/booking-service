@@ -1,13 +1,12 @@
 package com.mlisena.booking.dto.request;
 
-import lombok.Data;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
-@Data
-public class BookingRequest {
-
-    private String userId;
-    private String productId;
-    private String bookingDate;
-    private int quantity;
-    private String status;
-}
+public record BookingRequest(
+        String userId,
+        @NotNull(message = "Product ID cannot be null") String productId,
+        String bookingDate,
+        @Positive(message = "Quantity must be greater than 0") int quantity,
+        String status
+) { }

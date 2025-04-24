@@ -13,32 +13,32 @@ public class BookingMapper {
     }
 
     public static BookingResponse toResponse(Booking booking, Product product) {
-        return BookingResponse.builder()
-                .id(booking.getId())
-                .userId(booking.getUserId())
-                .product(product)
-                .bookingDate(booking.getBookingDate())
-                .quantity(booking.getQuantity())
-                .status(booking.getStatus())
-                .build();
+        return new BookingResponse(
+                booking.getId(),
+                booking.getUserId(),
+                product,
+                booking.getBookingDate(),
+                booking.getQuantity(),
+                booking.getStatus()
+        );
     }
 
     public static Booking toEntity(BookingRequest bookingRequest) {
         return Booking.builder()
-                .userId(bookingRequest.getUserId())
-                .productId(bookingRequest.getProductId())
-                .bookingDate(bookingRequest.getBookingDate())
-                .quantity(bookingRequest.getQuantity())
-                .status(bookingRequest.getStatus())
+                .userId(bookingRequest.userId())
+                .productId(bookingRequest.productId())
+                .bookingDate(bookingRequest.bookingDate())
+                .quantity(bookingRequest.quantity())
+                .status(bookingRequest.status())
                 .build();
     }
 
     public static Booking updateEntity(Booking booking, BookingRequest bookingRequest) {
-        booking.setUserId(bookingRequest.getUserId());
-        booking.setProductId(bookingRequest.getProductId());
-        booking.setBookingDate(bookingRequest.getBookingDate());
-        booking.setQuantity(bookingRequest.getQuantity());
-        booking.setStatus(bookingRequest.getStatus());
+        booking.setUserId(bookingRequest.userId());
+        booking.setProductId(bookingRequest.productId());
+        booking.setBookingDate(bookingRequest.bookingDate());
+        booking.setQuantity(bookingRequest.quantity());
+        booking.setStatus(bookingRequest.status());
         return booking;
     }
 }

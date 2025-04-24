@@ -1,15 +1,11 @@
 package com.mlisena.booking.client;
 
-import lombok.Data;
-
-@Data
-public class Product {
-
-    private String id;
-    private String name;
-    private String code;
-    private String description;
-    private double price;
-    private int stock;
-    private String categoryId;
-}
+public record Product(
+        String id,
+        String name,
+        String code,
+        String description,
+        double price,
+        int stock,
+        String categoryId
+) { }
