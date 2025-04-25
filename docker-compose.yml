@@ -18,7 +18,7 @@ services:
 
   mysql_database:
     image: mysql/mysql-server:latest
-    container_name: mysql_database
+    container_name: mysql_booking_database
     ports:
       - "3306:3306"
     environment:

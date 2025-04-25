@@ -5,6 +5,8 @@ import com.mlisena.booking.dto.request.BookingRequest;
 import com.mlisena.booking.dto.response.BookingResponse;
 import com.mlisena.booking.entity.Booking;
 
+import java.time.LocalDateTime;
+
 
 public class BookingMapper {
 
@@ -30,15 +32,17 @@ public class BookingMapper {
                 .bookingDate(bookingRequest.bookingDate())
                 .quantity(bookingRequest.quantity())
                 .status(bookingRequest.status())
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
                 .build();
     }
 
-    public static Booking updateEntity(Booking booking, BookingRequest bookingRequest) {
+    public static void updateEntity(Booking booking, BookingRequest bookingRequest) {
         booking.setUserId(bookingRequest.userId());
         booking.setProductId(bookingRequest.productId());
         booking.setBookingDate(bookingRequest.bookingDate());
         booking.setQuantity(bookingRequest.quantity());
         booking.setStatus(bookingRequest.status());
-        return booking;
+        booking.setUpdatedAt(LocalDateTime.now());
     }
 }
