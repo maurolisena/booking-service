@@ -1,4 +1,4 @@
-package com.mlisena.booking.client;
+package com.mlisena.booking.client.product;
 
 import com.mlisena.booking.configuration.feign.product.ProductServiceFeignConfiguration;
 import org.springframework.cloud.openfeign.FeignClient;

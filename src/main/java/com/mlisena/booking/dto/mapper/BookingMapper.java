@@ -1,6 +1,6 @@
 package com.mlisena.booking.dto.mapper;
 
-import com.mlisena.booking.client.Product;
+import com.mlisena.booking.client.product.Product;
 import com.mlisena.booking.dto.request.BookingRequest;
 import com.mlisena.booking.dto.response.BookingResponse;
 import com.mlisena.booking.entity.Booking;

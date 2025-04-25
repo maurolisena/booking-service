@@ -1,6 +1,6 @@
 package com.mlisena.booking.dto.response;
 
-import com.mlisena.booking.client.Product;
+import com.mlisena.booking.client.product.Product;
 
 public record BookingResponse (
         Long id,

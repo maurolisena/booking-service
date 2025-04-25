@@ -1,4 +1,4 @@
-package com.mlisena.booking.client;
+package com.mlisena.booking.client.product;
 
 public record Product(
         String id,
