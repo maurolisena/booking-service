@@ -4,7 +4,6 @@ import com.mlisena.booking.client.product.Product;
 
 public record BookingResponse (
         Long id,
-        String userId,
         Product product,
         String bookingDate,
         int quantity,

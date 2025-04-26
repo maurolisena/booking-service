@@ -20,7 +20,6 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userId;
     private String productId;
     private String bookingDate;
     private int quantity;

@@ -17,7 +17,6 @@ public class BookingMapper {
     public static BookingResponse toResponse(Booking booking, Product product) {
         return new BookingResponse(
                 booking.getId(),
-                booking.getUserId(),
                 product,
                 booking.getBookingDate(),
                 booking.getQuantity(),
@@ -27,7 +26,6 @@ public class BookingMapper {
 
     public static Booking toEntity(BookingRequest bookingRequest) {
         return Booking.builder()
-                .userId(bookingRequest.userId())
                 .productId(bookingRequest.productId())
                 .bookingDate(bookingRequest.bookingDate())
                 .quantity(bookingRequest.quantity())
@@ -38,7 +36,6 @@ public class BookingMapper {
     }
 
     public static void updateEntity(Booking booking, BookingRequest bookingRequest) {
-        booking.setUserId(bookingRequest.userId());
         booking.setProductId(bookingRequest.productId());
         booking.setBookingDate(bookingRequest.bookingDate());
         booking.setQuantity(bookingRequest.quantity());
