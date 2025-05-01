@@ -7,14 +7,14 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8082:8082"
+      - "9003:9003"
     environment:
       - SPRING_PROFILES_ACTIVE=dev
     depends_on:
       mysql_database:
         condition: service_healthy
     networks:
-      - application-network
+      - backend
 
   mysql_database:
     image: mysql/mysql-server:latest
@@ -27,7 +27,7 @@ services:
       MYSQL_PASSWORD: "A8424628"
       MYSQL_DATABASE: "booking_db"
     networks:
-      - application-network
+      - backend
     volumes:
       - ./database/mysql-init:/docker-entrypoint-initdb.d
       - mysql_database_data:/data/db
@@ -39,7 +39,7 @@ services:
         retries: 10
 
 networks:
-  application-network:
+  backend:
     external: true
 
 volumes:
